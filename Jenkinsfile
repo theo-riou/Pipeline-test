@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Exécution du script principal Python à partir du dépôt
-                    sh 'python3.11 Jenkinsfile'
+                    sh 'python3.11 OSDetector.py'
                 }
             }
         }
