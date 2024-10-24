@@ -12,9 +12,7 @@ pipeline {
                     // Mise à jour du système
                     sh 'sudo apt update'
                     // Installation de Python 3.11
-                    sh 'sudo apt install -y python3.11 python3.11-distutils'
-                    // Installation de pip pour Python 3.11
-                    sh 'curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python3.11'
+                    sh 'sudo apt install -y python3.11 python3.11-distutils' 'python3-pip"
                 }
             }
         }
