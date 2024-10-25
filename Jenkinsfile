@@ -6,21 +6,34 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/theo-riou/Pipeline-test/'
             }
         }
-        stage('Installation de Python 3.11 et pip') {
+        stage('Compilation') {
             steps {
                 script {
-                    // Mise à jour du système
-                    sh 'sudo apt update'
-                    // Installation de Python 3.11
-                    sh 'sudo apt install -y python3.11 python3.11-distutils' 'python3-pip"
+                    if (isUnix()) {
+                    sh 'make' //Compilation Unix/Linux
+                    } else {
+                    bat 'make' // Compilation Windows
+                    }
                 }
             }
         }
-        stage('Exécution du script Python') {
+        stage('Permissions') {
+            when {
+                expression { isUnix() } // Exécuter uniquement Unix
+                }
             steps {
-                script {
-                    // Exécution du script principal Python à partir du dépôt
-                    sh 'python3.11 OSDetector.py'
+                sh 'chmod +x StringInverser.c' // Nom de l'executable
+            }
+         }
+
+         stage('Nettoyage') {
+             steps {
+                 script {
+                     if (isUnix()) {
+                         sh 'make clean'
+                     } else {
+                         bat 'make clean'
+                    }
                 }
             }
         }
