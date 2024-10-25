@@ -22,7 +22,7 @@ pipeline {
                 expression { isUnix() } // Exécuter uniquement Unix
                 }
             steps {
-                sh 'chmod +x StringInverser.c' // Nom de l'executable
+                sh 'chmod +x StringInverser' // Nom de l'executable
             }
          }
 
